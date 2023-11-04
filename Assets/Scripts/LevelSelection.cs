@@ -8,15 +8,15 @@ public class LevelSelection : MonoBehaviour
 {
     public Button[] lvlButtons;
 
-    
     void Start()
     {
-        int levelAt = PlayerPrefs.GetInt("levelAt", 3); 
+        int levelAt = PlayerPrefs.GetInt("levelAt", 4); // Assuming level 1 starts at build index 4
+        Debug.Log($"Level at: {levelAt}");
 
-        for (int i = 0; i < lvlButtons.Length; i++)
+        foreach (var button in lvlButtons)
         {
-            if (i + 2 > levelAt)
-                lvlButtons[i].interactable = false;
+            int levelBuildIndex = int.Parse(button.name.Replace("Level", "")) + 3; // Get the build index from the button's name
+            button.interactable = levelBuildIndex <= levelAt;
         }
     }
 

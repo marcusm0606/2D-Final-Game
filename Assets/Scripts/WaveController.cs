@@ -26,7 +26,13 @@ public class WaveController : MonoBehaviour
     public Animator animator;         // Reference to the animator for wave completion animation
     public TextMeshProUGUI waveName;  // UI text element for displaying wave name
     private bool canAnimate = false;  // Indicates if the wave completion animation can be triggered
+    public int nextSceneLoad;
 
+    void Start()
+    {
+        nextSceneLoad = SceneManager.GetActiveScene().buildIndex + 1;
+        Debug.Log($"Initial nextSceneLoad: {nextSceneLoad}");
+    }
     private void Update()
     {
         currentWave = waves[currentWaveNumber]; // Get the current wave from the array
@@ -49,11 +55,25 @@ public class WaveController : MonoBehaviour
                     canAnimate = false;
                 }
             }
-            else
+
+            else// If all waves are completed, trigger game over and load the win scene or unlock next level
             {
-                // If all waves are completed, trigger game over and load the main menu scene
-                Debug.Log("Game Over");
-                SceneManager.LoadScene("MainMenu");
+                if (SceneManager.GetActiveScene().buildIndex == LevelManager.levelBuildIndexes[LevelManager.levelBuildIndexes.Count])
+                {
+                    Debug.Log("You Win");
+                    SceneManager.LoadScene("Win");
+                }
+                else
+                {
+                    int nextLevelBuildIndex = LevelManager.GetNextLevelBuildIndex(SceneManager.GetActiveScene().buildIndex);
+                    Debug.Log($"Level Complete! Next Scene Build Index: {nextLevelBuildIndex}");
+                    if (nextLevelBuildIndex > PlayerPrefs.GetInt("levelAt"))
+                    {
+                        PlayerPrefs.SetInt("levelAt", nextLevelBuildIndex);
+                    }
+                    SceneManager.LoadScene("LevelSelection");
+                }
+                
             }
         }
     }
