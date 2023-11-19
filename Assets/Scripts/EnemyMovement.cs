@@ -10,8 +10,8 @@ public class EnemyMovement : MonoBehaviour
     [SerializeField] private float moveSpeed = 2;
 
     private Transform target;
-    private int pathIndex = 0;
-
+    public int pathIndex = 0;
+    public int damage;
     void Start()
     {
         target = LevelManager.main.path[pathIndex];
@@ -19,6 +19,10 @@ public class EnemyMovement : MonoBehaviour
         // This assumes there's only one PlayerHealth component in the scene
         if (playerHealth == null)
             playerHealth = FindObjectOfType<PlayerHealth>();
+    }
+    public void SetPathIndex(int index)
+    {
+        pathIndex = index;
     }
 
     void Update()
@@ -30,7 +34,7 @@ public class EnemyMovement : MonoBehaviour
             {
                 if (playerHealth != null)
                 {
-                    playerHealth.TakeDamage(1); // Assumes each enemy deals 1 damage
+                    playerHealth.TakeDamage(damage); 
                 }
                 Destroy(gameObject);
                 return;

@@ -46,13 +46,16 @@ public class WaveController : MonoBehaviour
             // If all enemies are defeated and there are more waves
             if (currentWaveNumber + 1 != waves.Length)
             {
+               
                 if (canAnimate)
                 {
                     // Update the UI with the next wave's name, trigger wave completion animation,
                     // and prevent multiple animations from triggering
                     waveName.text = waves[currentWaveNumber + 1].waveName;
                     animator.SetTrigger("WaveComplete");
+                    
                     canAnimate = false;
+                    
                 }
             }
 
