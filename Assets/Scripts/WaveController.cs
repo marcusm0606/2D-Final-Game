@@ -35,9 +35,22 @@ public class WaveController : MonoBehaviour
     }
     private void Update()
     {
+
+
+        //debugging command 
+        if (Input.GetKeyDown(KeyCode.O))
+        {
+            int nextLevelBuildIndex = LevelManager.GetNextLevelBuildIndex(SceneManager.GetActiveScene().buildIndex);
+
+            if (nextLevelBuildIndex > PlayerPrefs.GetInt("levelAt"))
+            {
+                PlayerPrefs.SetInt("levelAt", nextLevelBuildIndex);
+            }
+            SceneManager.LoadScene("LevelSelection");
+        }
         currentWave = waves[currentWaveNumber]; // Get the current wave from the array
         SpawnWave(); // Spawn enemies based on the current wave's properties
-
+        waveName.text = currentWave.waveName;
         // Find all GameObjects with the "Enemy" tag
         GameObject[] totalEnemies = GameObject.FindGameObjectsWithTag("Enemy");
 
@@ -69,7 +82,7 @@ public class WaveController : MonoBehaviour
                 else
                 {
                     int nextLevelBuildIndex = LevelManager.GetNextLevelBuildIndex(SceneManager.GetActiveScene().buildIndex);
-                    Debug.Log($"Level Complete! Next Scene Build Index: {nextLevelBuildIndex}");
+                    
                     if (nextLevelBuildIndex > PlayerPrefs.GetInt("levelAt"))
                     {
                         PlayerPrefs.SetInt("levelAt", nextLevelBuildIndex);

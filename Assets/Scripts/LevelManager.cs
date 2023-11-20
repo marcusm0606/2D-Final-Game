@@ -17,7 +17,7 @@ public class LevelManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        currency = 100;
+        currency = 200;
     }
 
     // Update is called once per frame
