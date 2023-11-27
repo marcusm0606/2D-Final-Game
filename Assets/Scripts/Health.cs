@@ -5,7 +5,18 @@ public class Health : MonoBehaviour
     [SerializeField] private int hitPoints = 1;
     [SerializeField] private GameObject balloonToDrop; // Reference to the next lower balloon prefab
     [SerializeField] private int currencyWorth = 2;
+    [SerializeField] private AudioClip popSound; // Sound effect for popping
+    private AudioSource audioSource;
 
+    void Start()
+    {
+        audioSource = GetComponent<AudioSource>();
+        if (audioSource == null)
+        {
+            
+            audioSource = gameObject.AddComponent<AudioSource>();
+        }
+    }
     public void TakeDamage(int dmg)
     {
         hitPoints -= dmg;
@@ -13,7 +24,7 @@ public class Health : MonoBehaviour
         if (hitPoints <= 0)
         {
             int remainingDamage = -hitPoints; // Calculate remaining damage
-
+            audioSource.PlayOneShot(popSound);
             // Destroy the current balloon
             Destroy(gameObject);
 

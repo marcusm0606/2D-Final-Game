@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &7649279581287335336
+--- !u!1 &8335774735553113828
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,41 +8,40 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 7649279581287335341}
-  - component: {fileID: 7649279581287335338}
-  - component: {fileID: 7649279581287335339}
-  - component: {fileID: 6648625698588646138}
-  - component: {fileID: 7430940800769603311}
-  - component: {fileID: -5521337841672876878}
-  m_Layer: 6
-  m_Name: Enemy5
-  m_TagString: Enemy
+  - component: {fileID: 766236799058638684}
+  - component: {fileID: 1902378489244622862}
+  - component: {fileID: 4979489606454995951}
+  - component: {fileID: -7724827446952843159}
+  - component: {fileID: 7455172973175119482}
+  m_Layer: 7
+  m_Name: Cannon Ball
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &7649279581287335341
+--- !u!4 &766236799058638684
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7649279581287335336}
+  m_GameObject: {fileID: 8335774735553113828}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -13.8, y: -2.86, z: 0}
-  m_LocalScale: {x: 0.8, y: 0.8, z: 0.8}
+  m_LocalPosition: {x: 14.25, y: 0.73, z: 0}
+  m_LocalScale: {x: 0.45, y: 0.45, z: 0.45}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!212 &7649279581287335338
+--- !u!212 &1902378489244622862
 SpriteRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7649279581287335336}
+  m_GameObject: {fileID: 8335774735553113828}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -78,7 +77,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
-  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_Color: {r: 0.25938946, g: 0.26840556, b: 0.2735849, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -88,13 +87,13 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!58 &7649279581287335339
+--- !u!58 &4979489606454995951
 CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7649279581287335336}
+  m_GameObject: {fileID: 8335774735553113828}
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
@@ -104,14 +103,14 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
---- !u!50 &6648625698588646138
+--- !u!50 &-7724827446952843159
 Rigidbody2D:
   serializedVersion: 4
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7649279581287335336}
+  m_GameObject: {fileID: 8335774735553113828}
   m_BodyType: 1
   m_Simulated: 1
   m_UseFullKinematicContacts: 1
@@ -125,36 +124,20 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 0
---- !u!114 &7430940800769603311
+--- !u!114 &7455172973175119482
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7649279581287335336}
+  m_GameObject: {fileID: 8335774735553113828}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4d16859d2b901384ca2b2eb3ab38eb6d, type: 3}
+  m_Script: {fileID: 11500000, guid: deb97e3596fdff44f9619ae1ccf3e638, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rb: {fileID: 6648625698588646138}
-  playerHealth: {fileID: 0}
-  originalSpeed: 3
-  pathIndex: 0
-  damage: 8
---- !u!114 &-5521337841672876878
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7649279581287335336}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d43afcdc48aca574090f781287555eb4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  hitPoints: 1
-  balloonToDrop: {fileID: 7649279581287335336, guid: de1f7768a9b418a41a944b81a6fabb80, type: 3}
-  currencyWorth: 8
-  popSound: {fileID: 8300000, guid: 5b0dc3190a3f56d46b90bf1e3efc2cb1, type: 3}
+  rb: {fileID: -7724827446952843159}
+  bulletSpeed: 45
+  bulletDamage: 1
+  lifetime: 5
+  SplashRange: 1.5

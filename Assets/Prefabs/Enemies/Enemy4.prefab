@@ -139,7 +139,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb: {fileID: 6648625698588646138}
   playerHealth: {fileID: 0}
-  moveSpeed: 4
+  originalSpeed: 4.25
   pathIndex: 0
   damage: 4
 --- !u!114 &-5521337841672876878
@@ -157,3 +157,4 @@ MonoBehaviour:
   hitPoints: 1
   balloonToDrop: {fileID: 7649279581287335336, guid: fda33073617b1a64084d1ab535c9d52b, type: 3}
   currencyWorth: 4
+  popSound: {fileID: 8300000, guid: 5b0dc3190a3f56d46b90bf1e3efc2cb1, type: 3}

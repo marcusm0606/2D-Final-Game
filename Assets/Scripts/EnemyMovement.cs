@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 
 public class EnemyMovement : MonoBehaviour
 {
@@ -7,19 +8,22 @@ public class EnemyMovement : MonoBehaviour
     [SerializeField] private PlayerHealth playerHealth; // Reference to the PlayerHealth script
 
     [Header("Attributes")]
-    [SerializeField] private float moveSpeed = 2;
+    [SerializeField] private float originalSpeed = 2f;
+    private float currentSpeed;
 
     private Transform target;
     public int pathIndex = 0;
     public int damage;
+
     void Start()
     {
+        currentSpeed = originalSpeed; // Initialize current speed
         target = LevelManager.main.path[pathIndex];
-        // Find the PlayerHealth component in the scene
-        // This assumes there's only one PlayerHealth component in the scene
+
         if (playerHealth == null)
             playerHealth = FindObjectOfType<PlayerHealth>();
     }
+
     public void SetPathIndex(int index)
     {
         pathIndex = index;
@@ -32,23 +36,31 @@ public class EnemyMovement : MonoBehaviour
             pathIndex++;
             if (pathIndex >= LevelManager.main.path.Length)
             {
-                if (playerHealth != null)
-                {
-                    playerHealth.TakeDamage(damage); 
-                }
+                playerHealth?.TakeDamage(damage);
                 Destroy(gameObject);
                 return;
             }
-            else
-            {
-                target = LevelManager.main.path[pathIndex];
-            }
+            target = LevelManager.main.path[pathIndex];
         }
+    }
+
+    public void ApplySlow(float strength, float duration)
+    {
+        currentSpeed *= (1 - strength); // Reduce speed
+        StartCoroutine(RestoreSpeedAfterDelay(duration));
+    }
+
+    private IEnumerator RestoreSpeedAfterDelay(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        currentSpeed = originalSpeed; // Restore original speed
     }
 
     private void FixedUpdate()
     {
+        if (target == null) return;
+
         Vector2 direction = (target.position - transform.position).normalized;
-        rb.velocity = direction * moveSpeed;
+        rb.velocity = direction * currentSpeed; // Use current speed for movement
     }
 }

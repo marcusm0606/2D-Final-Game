@@ -14,10 +14,21 @@ public class Turret : MonoBehaviour
     [Header("Attribute")]
     [SerializeField] private float targetingRange = 5f;
     [SerializeField] private float bps = 1f; // Bullets per second
+    [SerializeField] private AudioClip shootSound; // Sound effect for shooting
+    private AudioSource audioSource;
 
     private Transform target;
     private float timeUntilFire;
 
+    private void Start()
+    {
+        audioSource = GetComponent<AudioSource>();
+        if (audioSource == null)
+        {
+            
+            audioSource = gameObject.AddComponent<AudioSource>();
+        }
+    }
     private void Update()
     {
         if (target == null || !CheckTargetIsInRange())
@@ -39,10 +50,15 @@ public class Turret : MonoBehaviour
 
     private void Shoot()
     {
-        
-        GameObject bulletobj = Instantiate(bulletPrefab, firingPoint.position, firingPoint.rotation);
-        BulletFire bulletScript = bulletobj.GetComponent<BulletFire>();
-        bulletScript.SetTarget(target);
+        if (!PauseMenu.isPaused)
+        {
+
+            GameObject bulletobj = Instantiate(bulletPrefab, firingPoint.position, firingPoint.rotation);
+            BulletFire bulletScript = bulletobj.GetComponent<BulletFire>();
+            bulletScript.SetTarget(target);
+            // Play shoot sound effect
+            audioSource.PlayOneShot(shootSound);
+        }
     }
 
     private void FindTarget()
