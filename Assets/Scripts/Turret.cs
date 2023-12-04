@@ -57,10 +57,12 @@ public class Turret : MonoBehaviour
             BulletFire bulletScript = bulletobj.GetComponent<BulletFire>();
             bulletScript.SetTarget(target);
             // Play shoot sound effect
-            audioSource.PlayOneShot(shootSound);
+            if (shootSound != null)
+            {
+                audioSource.PlayOneShot(shootSound);
+            }
         }
     }
-
     private void FindTarget()
     {
         Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, targetingRange, enemyMask);
@@ -90,11 +92,5 @@ public class Turret : MonoBehaviour
         turretRotationPoint.rotation = Quaternion.RotateTowards(turretRotationPoint.rotation, targetRotation, 360 * Time.deltaTime);
     }
 
-    private void OnDrawGizmosSelected()
-    {
-        if (turretRotationPoint == null) return;
-
-        Handles.color = Color.cyan;
-        Handles.DrawWireDisc(turretRotationPoint.position, Vector3.forward, targetingRange);
-    }
+    
 }

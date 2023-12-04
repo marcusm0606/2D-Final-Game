@@ -8,6 +8,8 @@ public class ButtonFunctions : MonoBehaviour
     public void Play(string levelName)
     {
         SceneManager.LoadScene(levelName);
+        Time.timeScale = 1f; // Reset the time scale
+        PauseMenu.isPaused = false;  // Ensure isPaused is also reset
 
     }
     public void Exit()
